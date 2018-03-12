@@ -120,8 +120,8 @@ class TimeSeries:
 def logLikelihood(data, comparedata, measerror=None):
     """
     This formula is based on the gaussian likelihood: homo/heteroscedastic data error formula which can be used in both
-    cases if the data has a homo- or heteroscedastic data error. To archive numerical stability a log-transformation was done, 
-    which derives following formula, as shown in formular 8 in: Vrugt 2016 Markov chain Monte Carlo 
+    cases if the data has a homo- or heteroscedastic data error. To archive numerical stability a log-transformation was done,
+    which derives following formula, as shown in formular 8 in: Vrugt 2016 Markov chain Monte Carlo
     simulation using the DREAM software package: Theory, concepts, and Matlab implementation, EMS:
 
 
@@ -890,12 +890,12 @@ def NoisyABCGaussianLikelihood(data, comparedata, measerror=None):
     size = sigmas[sigmas == 0.0].size
     if size > 0:
         warnings.warn(
-            "[NoisyABCGaussianLikelihood] reaslized that there are distinct distributed values. We jittered the values but the result can be far away from the truth.")
+            "[NoisyABCGaussianLikelihood] realized that there are distinct distributed values. We jittered the values but the result can be far away from the truth.")
         sigmas[sigmas == 0.0] = np.random.uniform(0.01, 0.1, size)
 
     if measerror == 0.0:
         warnings.warn(
-            "[NoisyABCGaussianLikelihood] reaslized that the mean of the measerror is zero and therefore is no likelihood calculation possible")
+            "[NoisyABCGaussianLikelihood] realized that the mean of the measerror is zero and therefore is no likelihood calculation possible")
         return np.NAN
 
     m = data.__len__()
@@ -910,11 +910,11 @@ def NoisyABCGaussianLikelihood(data, comparedata, measerror=None):
 def ABCBoxcarLikelihood(data, comparedata, measerror=None):
     """
     A simple ABC likelihood function is the Boxcar likelihood given by the formular:
-    
+
     .. math::
 
             p = \\max_{i=1}^N(\\epsilon_j - \\rho(S(Y),S(Y(X)))).
-            
+
     :math:`\\rho(S(Y),S(Y(X)))` is the eucledean distance.
 
     `Usage:` Maximizing the likelihood value guides to the best model.
@@ -1010,7 +1010,7 @@ def InverseErrorVarianceShapingFactor(data, comparedata, G=10):
     errArr = np.nanvar(np.array(__calcSimpleDeviation(data, comparedata)))
     if errArr == 0.0:
         warnings.warn(
-            "[InverseErrorVarianceShapingFactor] reaslized that the variance in y(x)-y is zero and that makes no sence and also impossible to calculate the likelihood.")
+            "[InverseErrorVarianceShapingFactor] realized that the variance in y(x)-y is zero and that makes no sence and also impossible to calculate the likelihood.")
         return np.NAN
     else:
         # Gives an better convergence, so close values are more less and apart values are more great.
@@ -1051,7 +1051,7 @@ def NashSutcliffeEfficiencyShapingFactor(data, comparedata, G=10):
 
     if np.nanvar(data) == 0.0:
         warnings.warn(
-            "[NashSutcliffeEfficiencyShapingFactor] reaslized that the variance of the data is zero. Thereforee is no likelihood calculation possible")
+            "[NashSutcliffeEfficiencyShapingFactor] realized that the variance of the data is zero. Thereforee is no likelihood calculation possible")
         return np.NAN
     else:
         ratio = np.nanvar(errArr) / np.nanvar(data)
